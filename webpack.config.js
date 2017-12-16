@@ -7,11 +7,12 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.css$/, loader: ["style-loader", "css-loader"] }
     ]
   },
   devServer: {
-      port: 4000,
-      historyApiFallback: true
+    port: 4000,
+    historyApiFallback: true
   }
 }
