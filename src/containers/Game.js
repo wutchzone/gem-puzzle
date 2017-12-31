@@ -1,15 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import GameConfig from "./GameConfig";
-import GameStats from "./GameStats";
+import { startGame } from "../actions/game_action";
 
 class Game extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { selectedSize: 4 }
+    }
+    componentWillReceiveProps({ game }) {
+        console.log(game);
+    }
     render() {
         return (
             <div>
-                <GameStats />
-                <section id="gamePlane" className="clearfix" style={{width: "400px"}}>
+                <header className="infoPanel">
+                    <p>Zbývá umístit <span id="infoRest">10</span> dílků.</p>
+                    <p>Celkem tahů: <span id="infoTotal">0</span></p>
+                </header>
+                <section id="gamePlane" className="clearfix" style={{ width: "400px" }}>
+                {/*
+                    <p className="piece odd">5</p>
+                    <p className="piece even">1</p>                    
                     <p className="piece odd">5</p>
                     <p className="piece even">1</p>
                     <p className="piece even onPosition">3</p>
@@ -26,18 +38,40 @@ class Game extends Component {
                     <p className="piece even onPosition">14</p>
                     <p className="piece odd movable">12</p>
                     <p className="piece even">11</p>
+                */}
                 </section>
-                <GameConfig />
-            </div>
+                <footer className="infoPanel">
+                    <p>
+                        <button id="createGame">Vytvořit</button> pole o hraně
+                        <select value={this.state.selectedSize} onChange={this.onSelect.bind(this)} name="planeSize" >
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option> {/*WTF je selected? selected="selected"*/}
+                            <option>5</option>
+                        </select> dílků.
+                    </p>
+                </footer >
+            </div >
         )
     }
+    componentDidMount() {
+        this.props.startGame(4);
+    }
+    /* EVENT DECLARATION */
+    onSelect(meta) {
+        this.setState({ selectedSize: meta.target.value });
+    }
+    onGameCreate() {
+        this.props.startGame(this.state.selectedSize);
+    }
+    /* END OF EVENT DECLARATION */
 }
 
 //Subscribe topic from root reducer
-function mapAppStateToLocalProps(state) {
+function mapAppStateToLocalProps({ game }) {
     return {
-
+        game
     }
 }
 
-export default connect(mapAppStateToLocalProps, null)(Game);
+export default connect(mapAppStateToLocalProps, { startGame })(Game);
