@@ -9,5 +9,8 @@ export function startGame(gameSize) {
 }
 
 export function click(card) {
-
+    return {
+        type: CLICK,
+        id: card
+    }
 }
