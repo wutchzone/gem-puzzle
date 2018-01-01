@@ -1,25 +1,12 @@
-# React-Redux boilerplate
+# Gem puzzle game
 
-This repository contains startup boiler plate for making web apps.
+This repository contains gem puzzle game which *model* is written in native JS.
+The view is written in React with help of Redux.
 
 # Setup
 
-- Make sure *Node* is installed with *npm*.
-- Navigate to project folder `cd /pslib-react-boilerplate`.
+- Make sure *Node* is installed with *npm --version*.
+- Navigate to project folder `cd /gem-puzzle`.
 - Install all dependencies `npm install`.
 - Start local web server `npm start`.
-
-# Demo
-
-*localhost:4000/* simple component example
-*localhost:4000/redux* simple redux example
-
-# Content
-
-- Webpack
-    - JavaScript (taking care of loading order)
-    - Webserver (with hotswap)
-- Babel
-    - ES6 -> ES5 (for older browsers)
-    - React (compiling react code)
     

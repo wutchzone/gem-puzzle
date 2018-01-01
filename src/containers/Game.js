@@ -11,9 +11,6 @@ class Game extends Component {
             planeWidth: 4 * 100
         }
     }
-    componentWillReceiveProps({ game }) {
-
-    }
     render() {
         let _pieceLeftCounter = 0;
         this.props.game.table.forEach((item) => item.positioned == false || item.positioned == null ? _pieceLeftCounter++ : null);
